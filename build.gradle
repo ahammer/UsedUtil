@@ -19,4 +19,26 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'used-util'
+ 
+    publishedGroupId = 'com.mysaasa'
+    libraryName = 'used-util'
+    artifact = 'used-util'
+ 
+    libraryDescription = 'A Library for tracking usage in java projects'
+ 
+    siteUrl = 'http://ahammer.github.io/UsedUtil'
+    gitUrl = 'https://github.com/ahammer/UsedUtil.git'
+ 
+    libraryVersion = '0.9.1'
+ 
+    developerId = 'adamhammer'
+    developerName = 'Adam Hammer'
+    developerEmail = 'adamhammer2@gmail.com'
+ 
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
