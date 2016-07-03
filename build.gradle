@@ -27,9 +27,9 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'used-util'
  
-    publishedGroupId = 'com.mysaasa'
-    libraryName = 'used-util'
-    artifact = 'used-util'
+    publishedGroupId = 'com.mysaasa.used_util'
+    libraryName = 'UsedUtil'
+    artifact = 'usedutil'
  
     libraryDescription = 'A Library for tracking usage in java projects'
  
