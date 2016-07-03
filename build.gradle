@@ -1,15 +1,17 @@
 buildscript {
     repositories {
         mavenCentral()
- 	    jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-    	classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+	jcenter()
     }
 }
 
+plugins {
+	id "com.jfrog.bintray" version "1.7"
+}
+
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
 
@@ -23,30 +25,31 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'used-util'
- 
-    publishedGroupId = 'com.mysaasa.used_util'
-    libraryName = 'UsedUtil'
-    artifact = 'usedutil'
- 
-    libraryDescription = 'A Library for tracking usage in java projects'
- 
-    siteUrl = 'http://ahammer.github.io/UsedUtil'
-    gitUrl = 'https://github.com/ahammer/UsedUtil.git'
- 
-    libraryVersion = '0.9.1'
- 
-    developerId = 'adamhammer'
-    developerName = 'Adam Hammer'
-    developerEmail = 'adamhammer2@gmail.com'
- 
-    licenseName = 'The Apache Software License, Version 2.0'
-    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-    allLicenses = ["Apache-2.0"]
+bintray {
+	user = System.getenv('BINTRAY_USER')
+    	key = System.getenv('BINTRAY_KEY')
+	publications = ['MyPublication']
+	pkg {
+		repo = 'maven'
+		name = 'used-util'
+		licenses = ['Apache-2.0']
+		vcsUrl = 'https://github.com/ahammer/UsedUtil.git' 
+		version {
+			name = '0.9.1'
+			desc = 'Used Util Beta'
+			released = new Date()
+			
+		}
+	}
 }
 
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
-
+publishing {
+	publications {
+		MyPublication(MavenPublication) {
+			from components.java
+			groupId 'com.mysaasa.usedutil'
+			artifactId 'used-util'
+			version "0.9.1"
+		}
+	}
+}
