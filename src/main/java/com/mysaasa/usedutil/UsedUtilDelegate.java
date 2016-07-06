@@ -7,7 +7,7 @@ import java.util.*;
  *
  * This API is not meant to be user facing
  */
-public class UsedUtilDelegate {
+class UsedUtilDelegate {
     Map<String, Integer> callCountMap = new HashMap<String, Integer>();
 
     void allowOnce(String tag, StackTraceElement[] stackTrace) {

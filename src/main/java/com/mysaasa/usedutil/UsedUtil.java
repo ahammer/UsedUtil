@@ -90,40 +90,81 @@ public class UsedUtil {
     }
 
 
+    /**
+     * Gets the report of use cases
+     *
+     * @return The report as a string
+     */
     public static String getReport() {
         return instance.getReport();
     }
 
+    /**
+     * Prints the report to standard output
+     */
     public static void printReport() {
         System.out.println(getReport());
     }
 
+    /**
+     * Check to see if this tool is enabled
+     *
+     * @return  True if globally enabled, False otherwise
+     */
     public boolean isEnabled() {
         return mGloballyEnabled;
     }
 
-
+    /**
+     * Enable or Disable this tool globally
+     *
+     * @param mGloballyEnabled true to enable, false to disable
+     */
     public void setEnabled(boolean mGloballyEnabled) {
         this.mGloballyEnabled = mGloballyEnabled;
     }
 
+    /**
+     * Checks if the Default tag is used
+     *
+     * @return  true if Log() has been called without a tag
+     */
     public static boolean isUsed() {
         return instance.isUsed("");
     }
 
+    /**
+     * Checks if a specific tag is used
+     *
+     * @param tag
+     * @return True if the tag is used, false otherwise
+     */
     public static boolean isUsed(String tag) {
         return instance.isUsed(tag);
     }
 
 
+    /**
+     * Resets the tool, starting from a blank slate
+     */
     public static void reset() {
         instance = new UsedUtilDelegate();
     }
 
+    /**
+     * Tells you how many times a tag has been called
+     *
+     * @param myTag
+     * @return The count the tag has been called
+     */
     public static int getUsageCount(String myTag) {
         return instance.getUsageCount(myTag);
     }
 
+    /**
+     * Tells you how many times the default call has been called
+     * @return  The count for the default calls to Log()
+     */
     public static int getUsageCount() {
         return instance.getUsageCount();
     }
