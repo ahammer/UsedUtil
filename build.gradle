@@ -25,6 +25,15 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
+task sourcesJar(type: Jar, dependsOn: classes) {
+	classifier 'sources'
+	from sourceSets.main.allSource
+}
+ 
+artifacts {
+	archives sourcesJar
+}
+
 bintray {
 	user = System.getenv('BINTRAY_USER')
     	key = System.getenv('BINTRAY_KEY')
@@ -35,7 +44,7 @@ bintray {
 		licenses = ['Apache-2.0']
 		vcsUrl = 'https://github.com/ahammer/UsedUtil.git' 
 		version {
-			name = '0.9.1'
+			name = '0.9.3'
 			desc = 'Used Util Beta'
 			released = new Date()
 			
@@ -49,7 +58,11 @@ publishing {
 			from components.java
 			groupId 'com.mysaasa.usedutil'
 			artifactId 'used-util'
-			version "0.9.1"
+			version "0.9.3"
+			artifact sourcesJar {
+				classifier 'sources'
+			}
 		}
+
 	}
 }
