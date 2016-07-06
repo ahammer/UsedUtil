@@ -51,10 +51,13 @@ bintray {
 		licenses = ['Apache-2.0']
 		vcsUrl = 'https://github.com/ahammer/UsedUtil.git' 
 		version {
-			name = '0.9.4'
+			name = '0.1.0'
 			desc = 'Used Util Beta'
 			released = new Date()
-			
+			gpg {
+				sign = true
+				passphrase = System.getenv('BINTRAY_GPG_PASSPHRASE')
+			}	
 		}
 	}
 }
@@ -63,9 +66,9 @@ publishing {
 	publications {
 		MyPublication(MavenPublication) {
 			from components.java
-			groupId 'com.mysaasa.usedutil'
+			groupId 'com.mysaasa'
 			artifactId 'used-util'
-			version "0.9.4"
+			version "0.1.0"
 			artifact sourcesJar {
 				classifier 'sources'
 			}
