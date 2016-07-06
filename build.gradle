@@ -29,9 +29,16 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 	classifier 'sources'
 	from sourceSets.main.allSource
 }
- 
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
 artifacts {
 	archives sourcesJar
+	archives javadocJar
 }
 
 bintray {
@@ -44,7 +51,7 @@ bintray {
 		licenses = ['Apache-2.0']
 		vcsUrl = 'https://github.com/ahammer/UsedUtil.git' 
 		version {
-			name = '0.9.3'
+			name = '0.9.4'
 			desc = 'Used Util Beta'
 			released = new Date()
 			
@@ -58,9 +65,12 @@ publishing {
 			from components.java
 			groupId 'com.mysaasa.usedutil'
 			artifactId 'used-util'
-			version "0.9.3"
+			version "0.9.4"
 			artifact sourcesJar {
 				classifier 'sources'
+			}
+			artifact javadocJar {
+				classifier = 'javadoc'
 			}
 		}
 
